@@ -1,181 +1,200 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Potencia tu marca en Instagram</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOVYX</title>
   <style>
     body {
+      background-color: #FFFFFF;
+      font-family: Arial, sans-serif;
       margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #4B0082;
-      color: #333;
+      padding: 0;
     }
-
-    .header {
+    .titulo {
+      background-color: #6A0DAD;
+      padding: 30px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      background-color: white;
-      padding: 1rem 2rem;
+      justify-content: flex-start;
     }
-
-    .header-left {
-      color: #4B0082;
-      font-weight: bold;
-      font-size: 1.2rem;
+    .titulo h1 {
+      font-size: 36px;
+      color: #98FFDC;
+      margin: 0;
     }
-
-    .header-right {
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      background-color: #4B0082;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-    }
-
-    .main {
-      padding: 2rem;
-      background-color: #4B0082;
-      min-height: 100vh;
-    }
-
-    .section-title {
-      color: white;
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    h2, p {
+      color: #98FFDC;
       text-align: center;
     }
-
-    .form-container {
-      background-color: white;
-      border-radius: 10px;
-      padding: 2rem;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .phase {
-      margin-bottom: 2rem;
-    }
-
-    .phase h2 {
-      color: #4B0082;
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-
-    input, select {
+    input, button {
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 6px;
+      box-sizing: border-box;
     }
-
-    .button {
-      background-color: white;
-      color: #4B0082;
-      border: 2px solid #4B0082;
-      padding: 0.75rem 1.5rem;
+    button {
+      background-color: #98FFDC;
+      color: #6A0DAD;
       font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s ease;
     }
-
-    .button:hover {
+    .seccion {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      border-radius: 12px;
+      box-sizing: border-box;
+    }
+    .activacion {
+      background-color: #6A0DAD;
+    }
+    .correccion {
       background-color: #4B0082;
-      color: white;
     }
 
-    .note {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-    }
-
-    .locked {
-      background-color: #eee;
-      padding: 1rem;
-      border-radius: 5px;
-      text-align: center;
-      color: #999;
-      font-style: italic;
+    @media screen and (max-width: 480px) {
+      .titulo {
+        padding: 20px;
+      }
+      .titulo h1 {
+        font-size: 28px;
+      }
+      .seccion {
+        padding: 20px;
+      }
+      input, button {
+        font-size: 16px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="header-left">SAUDITORIA: V2</div>
-    <div class="header-right">SOCREDI</div>
+
+  <div class="titulo">
+    <h1>SOVYX</h1>
   </div>
 
-  <div class="main">
-    <h1 class="section-title">Potencia tu marca en Instagram</h1>
-
-    <div class="form-container">
-      <!-- Fase 1: Instagram -->
-      <div class="phase">
-        <h2>1. Activación de Instagram</h2>
-        <form action="/auth/instagram" method="POST">
-          <button type="submit" class="button">Activar Instagram</button>
-          <div class="note">Serás redirigido para autorizar acceso y luego volverás aquí automáticamente 🌝</div>
-        </form>
-      </div>
-
-      <!-- Fase 2: Análisis + estilo -->
-      <div class="phase">
-        <h2>2. Análisis + elección de estilo</h2>
-        <form>
-          <div class="form-group">
-            <label for="color1">Color principal</label>
-            <input type="text" id="color1" name="color1" placeholder="Ej. Azul eléctrico" />
-          </div>
-
-          <div class="form-group">
-            <label for="color2">Color secundario</label>
-            <input type="text" id="color2" name="color2" placeholder="Ej. Blanco hielo" />
-          </div>
-
-          <div class="form-group">
-            <label for="style">Estilo visual</label>
-            <select id="style" name="style">
-              <option value="minimalista">Minimalista</option>
-              <option value="editorial">Editorial</option>
-              <option value="vintage">Vintage</option>
-              <option value="futurista">Futurista</option>
-            </select>
-          </div>
-
-          <button type="button" class="button">Completar</button>
-          <div class="note">Al completar esta fase, se abrirá el formulario y sistema de pago ritualizado 👺</div>
-        </form>
-      </div>
-
-      <!-- Fase 3: Formulario + pago -->
-      <div class="phase">
-        <h2>3. Formulario + pago</h2>
-        <div class="locked">Esta sección será añadida por Sophie. Aquí se activa el análisis real y se desbloquea la corrección final.</div>
-      </div>
-
-      <!-- Fase 4: Corrección final -->
-      <div class="phase">
-        <h2>4. Corrección del perfil</h2>
-        <div class="locked">Se desbloquea tras pago. Incluye biografía optimizada, captions, orden de publicaciones y sugerencias IA.</div>
-      </div>
+  <section id="activacion" class="seccion activacion">
+    <h2>Activar Cápsula</h2>
+   <a href="https://www.facebook.com/v18.0/dialog/oauth?client_id=1115209194074671&redirect_uri=https://sophie2353.github.io/sovyx.github.io/&scope=instagram_basic,instagram_manage_insights,pages_read_engagement,pages_show_list" target="_blank">
+Activar permisos de Instagram
+</a>
+    <div id="login" style="margin-top:30px; display:none;">
+      <form id="loginForm">
+        <input type="text" name="usuario" placeholder="Usuario de Instagram" required />
+        <input type="password" name="clave" placeholder="Contraseña" required />
+        <button type="submit">Entrar</button>
+      </form>
     </div>
-  </div>
+  </section>
+
+  <section id="formulario" class="seccion activacion" style="display:none;">
+    <h2>Simulación de Objetivo</h2>
+    <form id="capsulaForm">
+      <input type="text" name="product" placeholder="Producto" required />
+      <input type="number" name="price" placeholder="Precio (€)" required />
+      <input type="text" name="niche" placeholder="Nicho" required />
+      <input type="text" name="audience" placeholder="Audiencia" required />
+      <input type="number" name="goal" placeholder="Meta (€)" required />
+      <input type="number" name="days" placeholder="Tiempo (días)" required />
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <section id="respuesta" class="seccion correccion" style="display:none;"></section>
+  <section id="estadisticas" class="seccion correccion" style="display:none;"></section>
+
+  <script>
+    function mostrarLogin() {
+      document.getElementById('login').style.display = 'block';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const usuario = form.usuario.value;
+      localStorage.setItem('sovyx_user', usuario);
+      document.getElementById('activacion').style.display = 'none';
+      document.getElementById('formulario').style.display = 'block';
+    });
+
+    document.getElementById('capsulaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        product: form.product.value,
+        price: parseFloat(form.price.value),
+        niche: form.niche.value,
+        audience: form.audience.value,
+        goal: parseFloat(form.goal.value),
+        days: parseInt(form.days.value)
+      };
+
+      const usuario = localStorage.getItem('sovyx_user');
+      let tipoPost = "Post editorial";
+      const niche = data.niche.toLowerCase();
+      if (niche.includes("odontología")) tipoPost = "Reel de corrección";
+      if (niche.includes("fitness")) tipoPost = "Carrusel de transformación";
+      if (niche.includes("tech") || niche.includes("tecnología")) tipoPost = "Post de autoridad editorial";
+
+      let resultado = "";
+      if (data.price < 1000) {
+        resultado = `
+          <h2 style="color:#98FFDC;">⚠️ Corrección necesaria</h2>
+          <p style="color:#98FFDC;">Tu producto está por debajo del rango high ticket (€1.000+).</p>
+          <p style="color:#98FFDC;">Activa una cápsula de corrección para escalar tu oferta.</p>
+        `;
+      } else {
+        const cierreNecesario = Math.ceil(data.goal / data.price);
+        const cierrePorDia = Math.ceil(cierreNecesario / data.days);
+        const conversionPorPost = 500;
+        const postsNecesarios = Math.ceil(cierreNecesario / conversionPorPost);
+
+        resultado = `
+          <h2 style="color:#98FFDC;">Análisis editorial</h2>
+          <p style="color:#98FFDC;"><strong>Instagram:</strong> ${usuario}</p>
+          <p style="color:#98FFDC;"><strong>Producto:</strong> ${data.product}</p>
+          <p style="color:#98FFDC;"><strong>Nicho:</strong> ${data.niche}</p>
+          <p style="color:#98FFDC;"><strong>Post sugerido:</strong> ${tipoPost}</p>
+          <p style="color:#98FFDC;"><strong>Clientes reales necesarios:</strong> ${cierreNecesario}</p>
+          <p style="color:#98FFDC;"><strong>Posts estimados (1% conversión):</strong> ${postsNecesarios}</p>
+          <p style="color:#98FFDC;"><strong>Cierre diario estimado:</strong> ${cierrePorDia} clientes/día</p>
+          <p style="color:#98FFDC;">Si tienes ${data.days} días y quieres cerrar €${data.goal}, necesitas ${cierrePorDia} clientes/día porque cada cliente aporta €${data.price}.</p>
+          <hr style="border-color:#98FFDC;">
+          <button onclick="mostrarEstadisticas()">Siguiente</button>
+        `;
+      }
+
+      document.getElementById('formulario').style.display = 'none';
+      document.getElementById('respuesta').style.display = 'block';
+      document.getElementById('respuesta').innerHTML = resultado;
+    });
+
+    function mostrarEstadisticas() {
+      const usuario = localStorage.getItem('sovyx_user');
+      const contenido = `
+        <h2 style="color:#98FFDC;">Estadísticas simbólicas</h2>
+        <p style="color:#98FFDC;"><strong>Instagram:</strong> ${usuario}</p>
+        <p style="color:#98FFDC;">Fallos detectados: baja frecuencia, captions poco claros, engagement irregular</p>
+        <p style="color:#98FFDC;">Comentarios recientes: “No entiendo tu oferta”, “¿Qué vendes?”, “¿Esto es para mí?”</p>
+        <p style="color:#98FFDC;">Corrección sugerida: usar captions con autoridad, claridad y cierre emocional</p>
+        <p style="color:#98FFDC;">Tu cápsula está conectada simbólicamente a Meta. Cuando insertes tu App ID, se activa la conexión real.</p>
+        <p style="color:#98FFDC;">Recibirás análisis simbólico en 24H basado en estadísticas reales.</p>
+      `;
+      document.getElementById('respuesta').style.display = 'none';
+      document.getElementById('estadisticas').style.display = 'block';
+      document.getElementById('estadisticas').innerHTML = contenido;
+    }
+  </script>
+
 </body>
 </html>
