@@ -113,22 +113,14 @@
   <section id="estadisticas" class="seccion correccion" style="display:none;"></section>
 
   <script>
-    function mostrarFormulario() {
-      document.getElementById('registroConfirmado').style.display = 'none';
+    function mostrarFormulario()
       document.getElementById('formulario').style.display = 'block';
     }
 
-document.addEventListener('DOMContentLoaded', function() {
-
-   document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
   const usuario = localStorage.getItem('sovyx_user');
-  console.log("Usuario detectado:", usuario); // Verifica en consola
-
   if (usuario && usuario !== "") {
-    document.getElementById('activacion').style.display = 'none';
-    document.getElementById('inicio').style.display = 'none';
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('registroConfirmado').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'none';
     document.getElementById('formulario').style.display = 'block';
   }
 });
