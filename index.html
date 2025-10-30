@@ -125,49 +125,62 @@
       document.getElementById('formulario').style.display = 'block';
     }
 
-    window.addEventListener('load', function() {
-      let token = null;
+    
 
-      if (window.location.hash.includes('access_token=')) {
-        token = window.location.hash.split('access_token=')[1].split('&')[0];
-      }
+window.addEventListener('load', function() {
+  const usuarioGuardado = localStorage.getItem('sovyx_user');
+  if (usuarioGuardado) {
+    document.getElementById('activacion').style.display = 'none';
+    document.getElementById('inicio').style.display = 'none';
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('registroConfirmado').style.display = 'none';
+    document.getElementById('formulario').style.display = 'block';
+    return;
+  }
 
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('access_token')) {
-        token = params.get('access_token');
-      }
+  let token = null;
+  if (window.location.hash.includes('access_token=')) {
+    token = window.location.hash.split('access_token=')[1].split('&')[0];
+  }
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('access_token')) {
+    token = params.get('access_token');
+  }
 
-      if (token) {
-        localStorage.setItem('sovyx_token', token);
-        document.getElementById('activacion').style.display = 'none';
-        document.getElementById('inicio').style.display = 'none';
-        document.getElementById('login').style.display = 'none';
-        document.getElementById('registroConfirmado').style.display = 'block';
+  if (token) {
+    localStorage.setItem('sovyx_token', token);
+    document.getElementById('activacion').style.display = 'none';
+    document.getElementById('inicio').style.display = 'none';
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('registroConfirmado').style.display = 'none';
+    document.getElementById('formulario').style.display = 'block';
 
-        fetch('https://graph.instagram.com/me?fields=id,username&access_token=' + token)
-          .then(response => response.json())
-          .then(data => {
-            const usuarioInstagram = data.username || "usuario";
-            localStorage.setItem('sovyx_user', usuarioInstagram);
-          })
-          .catch(() => {
-            localStorage.setItem('sovyx_user', "usuario");
-          });
-      }
-    });
+    fetch('https://graph.instagram.com/me?fields=id,username&access_token=' + token)
+      .then(response => response.json())
+      .then(data => {
+        const usuarioInstagram = data.username || "usuario";
+        localStorage.setItem('sovyx_user', usuarioInstagram);
+      })
+      .catch(() => {
+        localStorage.setItem('sovyx_user', "usuario");
+      });
+  }
+});
 
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const usuario = form.usuario.value;
-      localStorage.setItem('sovyx_user', usuario);
-      document.getElementById('activacion').style.display = 'none';
-      document.getElementById('inicio').style.display = 'none';
-      document.getElementById('login').style.display = 'none';
-      document.getElementById('registroConfirmado').style.display = 'block';
-    });
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const usuario = form.usuario.value;
+  localStorage.setItem('sovyx_user', usuario);
 
-    document.getElementById('capsulaForm').addEventListener('submit', function(e) {
+  document.getElementById('activacion').style.display = 'none';
+  document.getElementById('inicio').style.display = 'none';
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('registroConfirmado').style.display = 'none';
+  document.getElementById('formulario').style.display = 'block';
+});
+   
+ document.getElementById('capsulaForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const form = e.target;
       const data = {
@@ -254,7 +267,7 @@ const cierrePorDia = Math.ceil(cierreNecesario / data.days);
         <hr style="border-color:#98FFDC; margin:30px 0;">
         <h3 style="color:#98FFDC;"> Correcciones aplicadas / pendientes</h3>
         <ul style="color:#98FFDC; text-align:left;">
-          <li> Caption corregido con tensión emocional</li>
+          <li>Caption corregido con tensión emocional</li>
           <li> CTA actualizado para proyectar autoridad</li>
           <li> Reel aún sin sticker de validación</li>
           <li> Prueba viva no publicada</li>
