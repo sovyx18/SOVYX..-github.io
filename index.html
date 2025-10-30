@@ -124,46 +124,18 @@
       document.getElementById('registroConfirmado').style.display = 'none';
       document.getElementById('formulario').style.display = 'block';
     }
-window.addEventListener('load', function() {
-  const usuarioGuardado = localStorage.getItem('sovyx_user');
-  if (usuarioGuardado) {
+
+document.addEventListener('DOMContentLoaded', function() {
+  const usuario = localStorage.getItem('sovyx_user');
+  if (usuario) {
     document.getElementById('activacion').style.display = 'none';
     document.getElementById('inicio').style.display = 'none';
     document.getElementById('login').style.display = 'none';
     document.getElementById('registroConfirmado').style.display = 'none';
     document.getElementById('formulario').style.display = 'block';
-    return;
-  }
-
-  let token = null;
-  if (window.location.hash.includes('access_token=')) {
-    token = window.location.hash.split('access_token=')[1].split('&')[0];
-  }
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('access_token')) {
-    token = params.get('access_token');
-  }
-
-  if (token) {
-    localStorage.setItem('sovyx_token', token);
-    document.getElementById('activacion').style.display = 'none';
-    document.getElementById('inicio').style.display = 'none';
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('registroConfirmado').style.display = 'none';
-    document.getElementById('formulario').style.display = 'block';
-
-    fetch('https://graph.instagram.com/me?fields=id,username&access_token=' + token)
-      .then(response => response.json())
-      .then(data => {
-        const usuarioInstagram = data.username || "usuario";
-        localStorage.setItem('sovyx_user', usuarioInstagram);
-      })
-      .catch(() => {
-        localStorage.setItem('sovyx_user', "usuario");
-      });
   }
 });
-
+    
 document.getElementById('loginForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const form = e.target;
