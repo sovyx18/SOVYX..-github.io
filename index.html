@@ -195,5 +195,93 @@
         `;
       } else {
         const cierreNecesario = Math.ceil(data.goal / data.price);
-        const cierrePor[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://github.com/CLONATORE/markdowns/tree/82cfb03683ceb807a7091de48045e6a7485acd72/webpack.md?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=1&citationId=2 "github.com")
-                                                              
+        const 
+const cierrePorDia = Math.ceil(cierreNecesario / data.days);
+        const resultadoActual = data.price * (cierreNecesario - 10);
+        const porcentaje = Math.min(100, Math.round((resultadoActual / data.goal) * 100));
+        const dashOffset = 314 - (314 * porcentaje / 100);
+
+        resultado = `
+          <h2 style="color:#98FFDC;"> Día ${data.days}: Corrección editorial</h2>
+          <p style="color:#98FFDC;"><strong>Meta:</strong> €${data.goal}</p>
+          <p style="color:#98FFDC;"><strong>Resultado actual:</strong> €${resultadoActual}</p>
+          <p style="color:#98FFDC;"><strong>Clientes faltantes:</strong> 10 de €${data.price}</p>
+          <p style="color:#98FFDC;"><strong>Días restantes:</strong> ${data.days}</p>
+          <hr style="border-color:#98FFDC;">
+          <p style="color:#98FFDC;"> Corrección sugerida:</p>
+          <ul style="color:#98FFDC; text-align:left;">
+            <li>Repetir el reel con sticker de validación</li>
+            <li>Corregir el CTA para proyectar autoridad</li>
+            <li>Usar tensión emocional en el caption</li>
+            <li>Publicar prueba viva del resultado parcial</li>
+          </ul>
+          <p style="color:#98FFDC;"> Esta corrección se basa en 12 fundamentos irrefutables. No se explica. Se ejecuta.</p>
+          <button onclick='mostrarEstadisticasExtendidas(${JSON.stringify(data)})'>Siguiente</button>
+        `;
+      }
+
+      document.getElementById('respuesta').innerHTML = resultado;
+      document.getElementById('respuesta').style.display = 'block';
+      document.getElementById('formulario').style.display = 'none';
+    }
+
+    function mostrarEstadisticasExtendidas(data) {
+      const usuario = localStorage.getItem('sovyx_user') || "usuario";
+      const cierreNecesario = Math.ceil(data.goal / data.price);
+      const cierreActual = cierreNecesario - 10;
+      const resultadoActual = data.price * cierreActual;
+      const porcentaje = Math.min(100, Math.round((resultadoActual / data.goal) * 100));
+      const dashOffset = 314 - (314 * porcentaje / 100);
+
+      document.getElementById('estadisticas').innerHTML = `
+        <h2 style="color:#98FFDC;"> Estadísticas simbólicas + reales</h2>
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+          <div style="flex:1; min-width:200px;">
+            <p style="color:#98FFDC;"><strong>Instagram:</strong> ${usuario}</p>
+            <p style="color:#98FFDC;"><strong>Objetivo actual:</strong> €${resultadoActual}</p>
+            <p style="color:#98FFDC;"><strong>Meta proyectada:</strong> €${data.goal}</p>
+            <p style="color:#98FFDC;"><strong>Clientes faltantes:</strong> 10</p>
+            <p style="color:#98FFDC;"><strong>Días restantes:</strong> ${data.days}</p>
+          </div>
+          <div style="flex:1; min-width:200px; text-align:center;">
+            <svg width="120" height="120">
+              <circle cx="60" cy="60" r="50" stroke="#98FFDC" stroke-width="10" fill="none" />
+              <circle id="progresoMeta" cx="60" cy="60" r="50" stroke="#6A0DAD" stroke-width="10" fill="none" stroke-dasharray="314" stroke-dashoffset="${dashOffset}" transform="rotate(-90 60 60)" />
+              <text x="60" y="65" text-anchor="middle" fill="#98FFDC" font-size="20px" font-weight="bold">${porcentaje}%</text>
+            </svg>
+          </div>
+        </div>
+        <hr style="border-color:#98FFDC; margin:30px 0;">
+        <h3 style="color:#98FFDC;"> Correcciones aplicadas / pendientes</h3>
+        <ul style="color:#98FFDC; text-align:left;">
+          <li> Caption corregido con tensión emocional</li>
+          <li> CTA actualizado para proyectar autoridad</li>
+          <li> Reel aún sin sticker de validación</li>
+          <li> Prueba viva no publicada</li>
+        </ul>
+        <p style="color:#98FFDC;"> Esta cápsula corrige cada 5 a 10 horas según resultados. Cada corrección se convierte en mutación. Cada mutación en autoridad viral.</p>
+        <div style="display:none;" id="fundamentosCorreccion">
+          <p>Sistema viral, adaptativo y emocionalmente inevitable. Diseñado para activar, corregir, escalar, documentar y multiplicar sin perder esencia.</p>
+          <ul>
+            <li>1. Emocionalmente inevitable</li>
+            <li>2. Financieramente simulable</li>
+            <li>3. Documentado en tiempo real</li>
+            <li>4. Corrige antes del fallo</li>
+            <li>5. Multiplica sin perder esencia</li>
+            <li>6. Activa sin vender</li>
+            <li>7. Escala sin comunidad</li>
+            <li>8. Visualmente icónico</li>
+            <li>9. Narrativamente inevitable</li>
+            <li>10. Validación pública</li>
+            <li>11. Corrección predictiva</li>
+            <li>12. Simulación de ingresos</li>
+          </ul>
+        </div>
+      `;
+
+      document.getElementById('respuesta').style.display = 'none';
+      document.getElementById('estadisticas').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
