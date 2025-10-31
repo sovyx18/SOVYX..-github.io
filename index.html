@@ -88,15 +88,29 @@
   </form>
 </section>
 
-<script>
-fuction activarinstagram () {
-https://api.instagram.com/oauth/authorize
-?client_id= 1115209194074671
-&https://sovyx18.github.io/SOVYX..-etapa-final/
-&scope=user_profile
-&response_type=token
+   <script>
+  function activarInstagram() {
+    const clientId = '1115209194074671';
+    const redirectUri = 'https://sovyx18.github.io/SOVYX..-etapa-final/';
+    const authUrl = `https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user_profile&response_type=token`;
+    window.location.href = authUrl;
+  }
 
   document.addEventListener('DOMContentLoaded', function() {
+    // Verifica si viene con token desde Instagram
+    const hash = window.location.hash;
+    if (hash.includes('access_token')) {
+      const token = hash.split('access_token=')[1];
+      if (token) {
+        localStorage.setItem('sovyx_user', 'instagram_user');
+        localStorage.setItem('sovyx_token', token);
+        document.getElementById('entrada').style.display = 'none';
+        document.getElementById('formulario').style.display = 'block';
+        return;
+      }
+    }
+
+    // Entrada manual
     const loginForm = document.getElementById('loginForm');
     if (!loginForm) return;
 
@@ -109,7 +123,7 @@ https://api.instagram.com/oauth/authorize
       document.getElementById('formulario').style.display = 'block';
     });
   });
-</script>   
+</script>
       
     </body
     </html>
