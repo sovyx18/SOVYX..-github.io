@@ -73,187 +73,44 @@
   <section id="activacion" class="seccion activacion">
     <h2>Activar</h2>
     <div style="text-align:center; margin-top:20px;">
-      <a href="https://www.facebook.com/v18.0/dialog/oauth?client_id=1115209194074671&redirect_uri=https://sovyx18.github.io/SOVYX..-github.io/&scope=instagram_basic,instagram_manage_insights,pages_read_engagement,pages_show_list" target="_blank" style="display:inline-block; background-color:#98FFDC; color:white; font-weight:bold; padding:12px 24px; border-radius:8px; text-decoration:none;">
-        Instagram
-      </a>
-    </div>
-  </section>
+     <!-- Página de bienvenida -->
+<section id="entrada">
+  <h2>Bienvenida a tu cápsula</h2>
+  <p>Elige cómo quieres entrar:</p>
 
-  <section id="inicio" class="seccion activacion">
-    <h2>¿Empiezas desde cero?</h2>
-    <p style="color:#98FFDC;">Si tu negocio aún no tiene claridad, estructura o resultados, esta cápsula te ayuda a corregir desde el inicio.</p>
-    <p style="color:#98FFDC;">No necesitas tener todo listo. Solo responde con lo que sabes y la cápsula te mostrará qué corregir.</p>
-    <p style="color:#98FFDC;">El sistema está diseñado para negocios que aún no tienen claridad editorial, precios definidos o estrategia de cierre.</p>
-  </section>
+  <!-- Botón de Instagram -->
+  <button onclick="activarInstagram()">Instagram</button>
 
-  <section id="login" class="seccion activacion">
-    <h2>Ingreso manual</h2>
-    <p style="color:#98FFDC;">Si no usaste el botón de Instagram, puedes ingresar tu usuario manualmente para simular el análisis.</p>
-    <form id="loginForm">
-      <input type="text" name="usuario" placeholder="Usuario de Instagram" required />
-      <input type="password" name="clave" placeholder="Contraseña" required />
-      <button type="submit">Entrar</button>
-    </form>
-  </section>
+  <!-- Entrada manual -->
+  <form id="loginForm">
+    <input type="text" name="usuario" placeholder="Tu usuario" required>
+    <button type="submit">Entrar manualmente</button>
+  </form>
+</section>
 
-  <section id="formulario" class="seccion activacion" style="display:none;">
-    <h2>Simulación de Objetivo</h2>
-    <form id="capsulaForm">
-      <input type="text" name="product" placeholder="Producto (¿Qué vendes?)" required />
-      <input type="number" name="price" placeholder="Precio (€) (¿Cuánto cuesta?)" required />
-      <input type="text" name="niche" placeholder="Nicho (¿En qué industria estás?)" required />
-      <input type="text" name="audience" placeholder="Audiencia (¿A quién va dirigido?)" required />
-      <input type="number" name="goal" placeholder="Meta (€) (¿Cuánto quieres facturar?)" required />
-      <input type="number" name="days" placeholder="Tiempo (días) (¿En cuántos días?)" required />
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-
-  <section id="respuesta" class="seccion correccion" style="display:none;"></section>
-  <section id="estadisticas" class="seccion correccion" style="display:none;"></section>
-
-  <script>
-    function mostrarFormulario()
-      document.getElementById('formulario').style.display = 'block';
-    }
+<script>
+  
+  function activarInstagram() {
+    const clientId = '1115209194074671'; 
+    const redirectUri = 'https://sovyx18.github.io/SOVYX..-github.io/';
+    const authUrl = `https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=user_profile&response_type=token`;
+    window.location.href = authUrl;
+  }
 
   document.addEventListener('DOMContentLoaded', function() {
-  const usuario = localStorage.getItem('sovyx_user');
-  if (usuario && usuario !== "") {
-    document.getElementById('loginForm').style.display = 'none';
-    document.getElementById('formulario').style.display = 'block';
-  }
-});
+    const loginForm = document.getElementById('loginForm');
+    if (!loginForm) return;
 
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const usuario = form.usuario.value;
-  localStorage.setItem('sovyx_user', usuario);
-  console.log("Usuario guardado:", usuario); // Verifica en consola
-
-  document.getElementById('activacion').style.display = 'none';
-  document.getElementById('inicio').style.display = 'none';
-  document.getElementById('login').style.display = 'none';
-  document.getElementById('registroConfirmado').style.display = 'none';
-  document.getElementById('formulario').style.display = 'block';
-});
-  
- document.getElementById('capsulaForm').addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      const form = e.target;
-      const data = {
-        product: form.product.value,
-        price: parseFloat(form.price.value),
-        niche: form.niche.value,
-        audience: form.audience.value,
-        goal: parseFloat(form.goal.value),
-        days: parseInt(form.days.value)
-      };
+      const usuario = loginForm.usuario.value;
+      localStorage.setItem('sovyx_user', usuario);
 
-      const usuario = localStorage.getItem('sovyx_user') || "usuario";
-      let tipoPost = "Post editorial";
-      const niche = data.niche.toLowerCase();
-      if (niche.includes("odontología")) tipoPost = "Reel de corrección";
-      if (niche.includes("fitness")) tipoPost = "Carrusel de transformación";
-      if (niche.includes("tech") || niche.includes("tecnología")) tipoPost = "Post de autoridad editorial";
-
-      let resultado = "";
-      if (data.price < 1000) {
-        resultado = `
-          <h2 style="color:#98FFDC;">⚠️ Corrección necesaria</h2>
-          <p style="color:#98FFDC;">Tu producto está por debajo del rango high ticket (€1.000+).</p>
-          <p style="color:#98FFDC;">Activa una cápsula de corrección para escalar tu oferta.</p>
-        `;
-      } else {
-        const cierreNecesario = Math.ceil(data.goal / data.price);
-        const 
-const cierrePorDia = Math.ceil(cierreNecesario / data.days);
-        const resultadoActual = data.price * (cierreNecesario - 10);
-        const porcentaje = Math.min(100, Math.round((resultadoActual / data.goal) * 100));
-        const dashOffset = 314 - (314 * porcentaje / 100);
-
-        resultado = `
-          <h2 style="color:#98FFDC;"> Día ${data.days}: Corrección editorial</h2>
-          <p style="color:#98FFDC;"><strong>Meta:</strong> €${data.goal}</p>
-          <p style="color:#98FFDC;"><strong>Resultado actual:</strong> €${resultadoActual}</p>
-          <p style="color:#98FFDC;"><strong>Clientes faltantes:</strong> 10 de €${data.price}</p>
-          <p style="color:#98FFDC;"><strong>Días restantes:</strong> ${data.days}</p>
-          <hr style="border-color:#98FFDC;">
-          <p style="color:#98FFDC;"> Corrección sugerida:</p>
-          <ul style="color:#98FFDC; text-align:left;">
-            <li>Repetir el reel con sticker de validación</li>
-            <li>Corregir el CTA para proyectar autoridad</li>
-            <li>Usar tensión emocional en el caption</li>
-            <li>Publicar prueba viva del resultado parcial</li>
-          </ul>
-          <p style="color:#98FFDC;"> Esta corrección se basa en 12 fundamentos irrefutables. No se explica. Se ejecuta.</p>
-          <button onclick='mostrarEstadisticasExtendidas(${JSON.stringify(data)})'>Siguiente</button>
-        `;
-      }
-
-      document.getElementById('respuesta').innerHTML = resultado;
-      document.getElementById('respuesta').style.display = 'block';
-      document.getElementById('formulario').style.display = 'none';
-    }
-
-    function mostrarEstadisticasExtendidas(data) {
-      const usuario = localStorage.getItem('sovyx_user') || "usuario";
-      const cierreNecesario = Math.ceil(data.goal / data.price);
-      const cierreActual = cierreNecesario - 10;
-      const resultadoActual = data.price * cierreActual;
-      const porcentaje = Math.min(100, Math.round((resultadoActual / data.goal) * 100));
-      const dashOffset = 314 - (314 * porcentaje / 100);
-
-      document.getElementById('estadisticas').innerHTML = `
-        <h2 style="color:#98FFDC;"> Estadísticas simbólicas + reales</h2>
-        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;">
-          <div style="flex:1; min-width:200px;">
-            <p style="color:#98FFDC;"><strong>Instagram:</strong> ${usuario}</p>
-            <p style="color:#98FFDC;"><strong>Objetivo actual:</strong> €${resultadoActual}</p>
-            <p style="color:#98FFDC;"><strong>Meta proyectada:</strong> €${data.goal}</p>
-            <p style="color:#98FFDC;"><strong>Clientes faltantes:</strong> 10</p>
-            <p style="color:#98FFDC;"><strong>Días restantes:</strong> ${data.days}</p>
-          </div>
-          <div style="flex:1; min-width:200px; text-align:center;">
-            <svg width="120" height="120">
-              <circle cx="60" cy="60" r="50" stroke="#98FFDC" stroke-width="10" fill="none" />
-              <circle id="progresoMeta" cx="60" cy="60" r="50" stroke="#6A0DAD" stroke-width="10" fill="none" stroke-dasharray="314" stroke-dashoffset="${dashOffset}" transform="rotate(-90 60 60)" />
-              <text x="60" y="65" text-anchor="middle" fill="#98FFDC" font-size="20px" font-weight="bold">${porcentaje}%</text>
-            </svg>
-          </div>
-        </div>
-        <hr style="border-color:#98FFDC; margin:30px 0;">
-        <h3 style="color:#98FFDC;"> Correcciones aplicadas / pendientes</h3>
-        <ul style="color:#98FFDC; text-align:left;">
-          <li>Caption corregido con tensión emocional</li>
-          <li> CTA actualizado para proyectar autoridad</li>
-          <li> Reel aún sin sticker de validación</li>
-          <li> Prueba viva no publicada</li>
-        </ul>
-        <p style="color:#98FFDC;"> Esta cápsula corrige cada 5 a 10 horas según resultados. Cada corrección se convierte en mutación. Cada mutación en autoridad viral.</p>
-        <div style="display:none;" id="fundamentosCorreccion">
-          <p>Sistema viral, adaptativo y emocionalmente inevitable. Diseñado para activar, corregir, escalar, documentar y multiplicar sin perder esencia.</p>
-          <ul>
-            <li>1. Emocionalmente inevitable</li>
-            <li>2. Financieramente simulable</li>
-            <li>3. Documentado en tiempo real</li>
-            <li>4. Corrige antes del fallo</li>
-            <li>5. Multiplica sin perder esencia</li>
-            <li>6. Activa sin vender</li>
-            <li>7. Escala sin comunidad</li>
-            <li>8. Visualmente icónico</li>
-            <li>9. Narrativamente inevitable</li>
-            <li>10. Validación pública</li>
-            <li>11. Corrección predictiva</li>
-            <li>12. Simulación de ingresos</li>
-          </ul>
-        </div>
-      `;
-
-      document.getElementById('respuesta').style.display = 'none';
-      document.getElementById('estadisticas').style.display = 'block';
-    }
-  </script>
-</body>
-</html>
+      document.getElementById('entrada').style.display = 'none';
+      document.getElementById('formulario').style.display = 'block';
+    });
+  });
+</script>   
+      
+    </body
+    </html>
